@@ -1,8 +1,5 @@
-# load rtx
-set rtx (which rtx)
-$rtx activate fish | source
-rtx hook-env -s fish | source
-rtx complete -s fish | source
+# load mise
+~/.local/bin/mise activate fish | source
 
 # path config
 set -x PATH $PATH $GOPATH/bin
@@ -13,9 +10,10 @@ if not functions -q fundle; eval (curl -sfL https://git.io/fundle-install); end
 # fundle plugin
 fundle plugin "edc/bass"
 fundle plugin "fisherman/spin"
-fundle plugin "jethrokuan/fzf"
+fundle plugin "PatrickF1/fzf.fish"
 fundle plugin "decors/fish-ghq"
 fundle plugin "oh-my-fish/plugin-peco"
+fundle plugin "FabioAntunes/base16-fish-shell"
 
 # fundle init
 fundle init
@@ -29,14 +27,16 @@ alias vi="nvim"
 alias c="clear"
 alias bat="bat --theme Nord"
 
-# color
-set -g TERM screen-256color
+# fzf
 
-# zoxide from rtx
-zoxide init fish | source
 
-# thef*ck
-thefuck --alias | source
+# EDITOR
+set -x EDITOR "nvim"
 
-# starship (must be final line)
-starship init fish | source
+if status --is-interactive
+  mise exec zoxide --command "zoxide init fish" | source
+  mise exec starship --command "starship init fish" | source
+end
+
+# rye comp
+eval "$(rye self completion -s fish)"

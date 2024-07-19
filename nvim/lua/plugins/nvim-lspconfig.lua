@@ -24,29 +24,6 @@ return {
           vim.lsp.protocol.make_client_capabilities()
           ),
         })
-        -- for python poetry env
-        require('lspconfig').pyright.setup {
-          settings = {
-            python = {
-              venvPath = '.',
-              pythonPath = './.venv/bin/python',
-              analysis = {
-                extraPaths = {'.'}
-              }
-            }
-          }
-        }
-        -- protobuf
-        require('lspconfig').bufls.setup{}
-        -- ruff for python
-        require('lspconfig').ruff_lsp.setup {
-          init_options = {
-            settings = {
-              -- Any extra CLI arguments for `ruff` go here.
-              args = {},
-            }
-          }
-        }
       end })
     end,
   }

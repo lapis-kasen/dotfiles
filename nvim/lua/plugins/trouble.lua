@@ -6,7 +6,7 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     keys = {
-      " ",
+      { "<C-t>", "<cmd> TroubleToggle<CR>", desc = "Toggle Trouble" }
     },
     config = function()
       local actions = require("telescope.actions")
