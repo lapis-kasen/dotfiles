@@ -4,7 +4,7 @@ return {
     dependencies = {
       "shaunsingh/nord.nvim",
     },
-    event = { "BufReadPre", "BufNewFile" },
+    event = "VeryLazy",
     config = function()
       require'lualine'.setup {
         options = {

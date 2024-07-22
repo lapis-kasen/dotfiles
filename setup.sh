@@ -18,7 +18,7 @@ ln -sf $CURRENT/fish/config.fish ~/.config/fish/config.fish
 ln -sf $CURRENT/nvim/init.lua ~/.config/nvim/init.lua
 ln -sf $CURRENT/nvim/lua ~/.config/nvim/
 
-ln -sf $CURRENT/nvim/luarc.json ~/.config/nvim/.luarc.json
+ln -sf $CURRENT/nvim/luarc.json ~/.config/nvim/luarc.json
 ln -sf $CURRENT/nvim/luarc.json ~/.config/nvim/lua/.luarc.json
 ln -sf $CURRENT/nvim/luarc.json ~/.config/nvim/lua/plugins/.luarc.json
 
@@ -27,6 +27,9 @@ ln -sf $CURRENT/wez/wezterm.lua ~/.config/wezterm/.wezterm.lua
 
 # set symbolic link startship
 ln -sf $CURRENT/starship/starship.toml ~/.config/starship.toml
+
+# set symbolic link mise config
+ln -sf $CURRENT/mise/config.toml ~/.config/mise/config.toml
 
 read -n 1 -p "Is install python build tool?(y/n) > " IsInstall
 echo ""
@@ -48,30 +51,3 @@ esac
 if [ ! -e ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
-
-# rtx
-# if [ ! -e ~/bin/rtx ]; then
-#   curl https://rtx.pub/rtx-latest-linux-x64 > ~/bin/rtx
-#   chmod +x ~/bin/rtx
-#   echo 'eval "$(~/bin/rtx activate bash)"' >> ~/.bashrc
-#   source ~/.bashrc
-# fi
-
-# rtx packages 
-# rtx_packages=('golang' 'python' 'rust' 'nodejs' 'neovim' 'peco' 'ghq' 'fd' 'fzf' 'repgrep' 'bat' 'starship' 'exa')
-# for lc in "${rtx_packages[@]}"
-# do
-# 	rtx install ${rp}
-#   rtx use --global ${rp}
-# done
-# starship
-# echo 'eval "$(starship init bash)"' >> ~/.bashrc
-# nvim
-# pip3 install neovim
-# npm install -g neovim
-# npm install -g yarn
-# python 
-# pip3 install pipx
-# pipx insatll black
-# pipx install poetry
-# rtx current

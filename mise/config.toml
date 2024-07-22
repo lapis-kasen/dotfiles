@@ -1,0 +1,30 @@
+[tools]
+python = "latest"
+neovim = "latest"
+peco = "latest"
+ghq = "latest"
+zoxide = "latest"
+rye = "latest"
+pipx = "latest"
+"pipx:ruff" = "latest"
+"pipx:uv" = "latest"
+bat = "latest"
+ripgrep = "latest"
+node = "latest"
+tree-sitter = "latest"
+fd = "latest"
+usage = "latest"
+exa = "latest"
+aria2 = "latest"
+duf = "latest"
+jq = "latest"
+rust = "latest"
+"cargo:tre" = "latest"
+shellcheck = "latest"
+shfmt = "latest"
+starship = "1.19.0"
+"pipx:httpie" = "latest"
+
+[settings]
+experimental = true
+legacy_version_file = false

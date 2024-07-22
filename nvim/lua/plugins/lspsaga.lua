@@ -1,7 +1,7 @@
 return {
   {
     "nvimdev/lspsaga.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "VeryLazy" },
     config = function()
       require('lspsaga').setup({
         ui = {

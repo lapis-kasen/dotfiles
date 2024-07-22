@@ -61,7 +61,7 @@ return {
           format = require('lspkind').cmp_format({
             with_text = false,
             mode = 'symbol',
-            maxwidth = '50',
+            maxwidth = 50,
             ellipsis_char = '...',
             menu = {
               buffer = "[Buf]",

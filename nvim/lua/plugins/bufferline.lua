@@ -4,7 +4,7 @@ return {
     dependencies = {
       "shaunsingh/nord.nvim",
     },
-    event = { "BufReadPre", "BufNewFile" },
+    event = "VeryLazy",
     config = function()
       vim.opt.termguicolors = true
       local highlights = require("nord").bufferline.highlights({

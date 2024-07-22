@@ -4,7 +4,7 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
     },
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "VeryLazy" },
     config = function ()
       -- nvim lsp
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)

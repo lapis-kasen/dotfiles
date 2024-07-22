@@ -6,7 +6,7 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     cmd = { "Telescope" },
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "VeryLazy" },
     keys = {
       "<leader>",
     },
