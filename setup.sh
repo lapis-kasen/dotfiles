@@ -2,7 +2,7 @@
 # mkdir
 mkdir -p ~/.config/tmux
 mkdir -p ~/.config/fish
-mkdir -p ~/.config/nvim
+mkdir -p ~/.config/nvim/py3nvim
 mkdir -p ~/.config/wezterm
 
 CURRENT=$(cd $(dirname $0);pwd)
@@ -17,10 +17,7 @@ ln -sf $CURRENT/fish/config.fish ~/.config/fish/config.fish
 # set symbolic link nvim configuration
 ln -sf $CURRENT/nvim/init.lua ~/.config/nvim/init.lua
 ln -sf $CURRENT/nvim/lua ~/.config/nvim/
-
-ln -sf $CURRENT/nvim/luarc.json ~/.config/nvim/luarc.json
-ln -sf $CURRENT/nvim/luarc.json ~/.config/nvim/lua/.luarc.json
-ln -sf $CURRENT/nvim/luarc.json ~/.config/nvim/lua/plugins/.luarc.json
+ln -sf $CURRENT/nvim/py3nvim/pyproject.toml ~/.config/nvim/py3nvim/pyproject.toml
 
 # set symbolic link wezterm
 ln -sf $CURRENT/wez/wezterm.lua ~/.config/wezterm/.wezterm.lua
@@ -51,3 +48,21 @@ esac
 if [ ! -e ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+# mise
+echo "Install/Upgrade mise packages"
+
+if [ ! -e ~/.local/bin/mise ]; then
+  curl https://mise.run | sh
+fi
+
+# mise install
+~/.local/bin/mise install
+# mise upgrade
+~/.local/bin/mise upgrade
+
+# python3 for neovim
+echo "Create venv for neovim"
+cd ~/.config/nvim/py3nvim
+~/.local/bin/mise exec --command "rye sync --force"
+
