@@ -24,6 +24,8 @@ shellcheck = "latest"
 shfmt = "latest"
 starship = "1.19.0"
 "pipx:httpie" = "latest"
+podman = "latest"
+"pipx:podman-compose" = "latest"
 
 [settings]
 experimental = true
