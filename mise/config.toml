@@ -26,6 +26,8 @@ starship = "1.19.0"
 "pipx:httpie" = "latest"
 podman = "latest"
 "pipx:podman-compose" = "latest"
+fzf = "latest"
+go = "latest"
 
 [settings]
 experimental = true
