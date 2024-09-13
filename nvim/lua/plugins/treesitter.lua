@@ -25,6 +25,10 @@ return {
           enable = true,
           disable = {},
         },
+        fold = {
+          enable = true,
+          disable = {}
+        }
       }
     end,
   }

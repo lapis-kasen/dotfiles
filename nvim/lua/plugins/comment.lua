@@ -2,7 +2,7 @@ return
 {
   {
     'numToStr/Comment.nvim',
-    keys = {"g"},
+    event = "VeryLazy",
     opts = {
       {
         ---Add a space b/w comment and the line

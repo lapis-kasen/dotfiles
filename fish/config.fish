@@ -27,8 +27,9 @@ alias vi="nvim"
 alias c="clear"
 alias bat="bat --theme Nord"
 
-# fzf
-
+# diff-so-fancy for git
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+git config --global is-interactive.diffFilter "diff-so-fancy --patch"
 
 # EDITOR
 set -x EDITOR "nvim"

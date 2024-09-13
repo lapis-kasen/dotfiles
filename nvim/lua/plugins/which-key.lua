@@ -2,7 +2,12 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts = {},
+    config = function()
+      require("which-key").setup({
+        preset = "modern"
+      })
+      vim.api.nvim_set_hl(0, "WhichKeyBorder", { link = "WhichKey"})
+    end,
     keys = {
       -- Telescope
       {
