@@ -24,11 +24,14 @@ shellcheck = "latest"
 shfmt = "latest"
 starship = "1.19.0"
 "pipx:httpie" = "latest"
-"pipx:podman-compose" = "latest"
 fzf = "latest"
 go = "latest"
 "npm:diff-so-fancy" = "latest"
 lazygit = "latest"
+"npm:@microsoft/inshellisense" = "latest"
+"pipx:md2pdf" = "latest"
+"npm:markdownlint-cli" = "latest"
+"pipx:podman-compose" = "latest"
 
 [settings]
 experimental = true
