@@ -6,7 +6,10 @@ return
     config = function()
       require("hlchunk").setup({
         chunk = {
-          enable = true
+          enable = true,
+          exclude_filetypes = {
+            markdown = true,
+          }
         },
         indent = {
           enable = true

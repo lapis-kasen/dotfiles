@@ -26,7 +26,7 @@ vim.opt.listchars = {
 vim.opt.ambiwidth = "single"
 
 vim.opt.cmdheight = 2
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 vim.opt.showcmd = true
 vim.opt.display = "lastline"
 vim.opt.updatetime = 300
@@ -73,7 +73,7 @@ vim.opt.cindent = true
 vim.opt.cino = "l1,:0,g0,(0,W4,m1"
 
 -- Copy&Paste
-vim.opt.clipboard = "unnamedplus"
+vim.g.clipboard = "unnamedplus"
 
 -- Search behavior
 vim.opt.ignorecase = true
