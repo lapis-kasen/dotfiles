@@ -90,9 +90,9 @@ return {
 
       --  diagnostics signs
       local signs = {
-        Error = "",
+        Error = "󰅚",
         Warn = "",
-        Hint = "",
+        Hint = "",
         Information = ""
       }
 
