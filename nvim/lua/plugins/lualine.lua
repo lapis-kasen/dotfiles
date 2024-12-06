@@ -32,7 +32,7 @@ return {
           lualine_y = {},
           lualine_z = {}
         },
-        extensions = {'quickfix', 'nerdtree', 'fugitive'}
+        extensions = {'quickfix', 'nvim-tree', 'fugitive', "mason", "lazy", "trouble"}
       }
     end,
   }

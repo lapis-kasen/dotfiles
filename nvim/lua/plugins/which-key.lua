@@ -8,11 +8,22 @@ return {
       })
       vim.api.nvim_set_hl(0, "WhichKeyBorder", { link = "WhichKey"})
     end,
+    triggers = {
+      { "<c-left>", mode = {"nixsotc"}}
+    },
     keys = {
       -- Telescope
       {
         "<leader>f",
         group = "Telescope",
+      },
+      {
+        "<c-left>",
+        group = "Ctrl",
+      },
+      {
+        "<c>",
+        group = "Ctrl",
       },
       {
         "<leader>ff",

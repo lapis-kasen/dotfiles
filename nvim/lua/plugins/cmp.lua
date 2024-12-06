@@ -56,6 +56,7 @@ return {
           { name = 'vsnip' },
           { name = 'buffer' },
           { name = 'path' },
+          { name = 'emoji' },
         }),
         formatting = {
           format = require('lspkind').cmp_format({
