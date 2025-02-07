@@ -5,7 +5,6 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
     },
-    cmd = { "Telescope" },
     event = { "VeryLazy" },
     keys = {
       "<leader>",

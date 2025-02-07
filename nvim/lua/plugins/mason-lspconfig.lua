@@ -31,9 +31,7 @@ return
         vim.lsp.codelens.refresh()
       end
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      )
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -70,23 +68,6 @@ return
         end,
       })
       vim.cmd("LspStart")
-      -- Sign Definition
-      vim.fn.sign_define(
-      "DiagnosticSignError",
-      { text = " ", texthl = "DiagnosticSignError" }
-      )
-      vim.fn.sign_define(
-      "DiagnosticSignWarn",
-      { text = " ", texthl = "DiagnosticSignWarn" }
-      )
-      vim.fn.sign_define(
-      "DiagnosticSignInfo",
-      { text = " ", texthl = "DiagnosticSignInfo" }
-      )
-      vim.fn.sign_define(
-      "DiagnosticSignHint",
-      { text = " ", texthl = "DiagnosticSignHint" }
-      )
     end,
   }
 }

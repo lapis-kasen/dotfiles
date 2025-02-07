@@ -46,6 +46,11 @@ return {
         "<leader>ftt",
         "<cmd>TodoTrouble<cr>",
         desc = "lookup TodoTrouble"
+      },
+      {
+        "<leader>tt",
+        "<cmd>ToggleTerm<cr>",
+        desc = "Toggle Terminal"
       }
     },
   }

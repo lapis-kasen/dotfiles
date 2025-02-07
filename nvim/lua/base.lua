@@ -13,7 +13,8 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencodings = "utf-8,euc-jp,sjis,cp932,iso-2022-jp"
 
 vim.opt.number = true
-vim.opt.cursorline = true
+vim.opt.cursorline = false
+vim.opt.virtualedit = ""
 vim.opt.wrap = true
 vim.opt.list = true
 vim.opt.listchars = {
@@ -37,7 +38,7 @@ vim.opt.mouse = "a"
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
-vim.opt.viminfo = ""
+--vim.opt.viminfo = ""
 vim.opt.undofile = false
 
 -- enable to open other file in edit

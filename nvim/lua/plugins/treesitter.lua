@@ -20,6 +20,7 @@ return {
           "kotlin",
           "vim",
           "vimdoc",
+          "bash",
         },
         highlight = {
           enable = true,
