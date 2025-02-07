@@ -1,6 +1,3 @@
-# load mise
-~/.local/bin/mise activate fish | source
-
 # path config
 set -x PATH $PATH $GOPATH/bin
 
@@ -19,10 +16,10 @@ fundle plugin "FabioAntunes/base16-fish-shell"
 fundle init
 
 # alias
-alias ls="exa --icons"
-alias ll="exa --icons -l"
-alias ll="exa --icons -la"
-alias lt="exa --icons --tree"
+alias ls="eza --icons"
+alias ll="eza --icons -l"
+alias ll="eza --icons -la"
+alias lt="eza --icons --tree"
 alias vi="nvim"
 alias c="clear"
 alias bat="bat --theme Nord"
@@ -34,21 +31,14 @@ git config --global is-interactive.diffFilter "diff-so-fancy --patch"
 # EDITOR
 set -x EDITOR "nvim"
 
+fish_add_path $HOME/bin
+fish_add_path $HOME/.local/bin
+
 if status --is-interactive
+  mise activate fish | source
   mise exec zoxide --command "zoxide init fish" | source
   mise exec starship --command "starship init fish" | source
 end
-
-# mise completion
-# if "usage" is not installed show an error
-if ! command -v usage &> /dev/null
-    echo >&2
-    echo "Error: usage CLI not found. This is required for completions to work in mise." >&2
-    echo "See https://usage.jdx.dev for more information." >&2
-    return 1
-end
-set _usage_spec_mise (mise usage | string collect)
-complete -xc mise -a '(usage complete-word --shell fish -s "$_usage_spec_mise" -- (commandline -cop) (commandline -t))'
 
 # rye comp
 eval "$(rye self completion -s fish)"

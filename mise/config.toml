@@ -1,20 +1,17 @@
 [tools]
 python = "latest"
-neovim = "latest"
+neovim = "nightly"
 peco = "latest"
 ghq = "latest"
 zoxide = "latest"
 rye = "latest"
 pipx = "latest"
 "pipx:ruff" = "latest"
-"pipx:uv" = "latest"
 bat = "latest"
 ripgrep = "latest"
 node = "latest"
 tree-sitter = "latest"
 fd = "latest"
-usage = "latest"
-exa = "latest"
 aria2 = "latest"
 duf = "latest"
 jq = "latest"
@@ -29,9 +26,21 @@ go = "latest"
 "npm:diff-so-fancy" = "latest"
 lazygit = "latest"
 "pipx:md2pdf" = "latest"
-"npm:markdownlint-cli" = "latest"
 "pipx:podman-compose" = "latest"
+uv = "latest"
+bun = "latest"
+"npm:markdownlint-cli" = "latest"
+"cargo:eza" = "latest"
+usage = "latest"
+java = "21"
+"cargo:csview" = "latest"
 
 [settings]
 experimental = true
 legacy_version_file = false
+
+[settings.pipx]
+uvx = true
+
+[settings.npm]
+bun = true
