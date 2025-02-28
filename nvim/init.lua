@@ -31,6 +31,20 @@ local opts = {
       enabled = true,
     },
   },
+  pkg = {
+    sources = {
+      "lazy",
+      "rockspec",
+      "packspec",
+    },
+  },
+  rocks = {
+    enabled = true,
+    hererocks = true,
+  },
+  install = {
+    missing = true,
+  },
 }
 
 -- load config and plugins

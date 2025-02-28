@@ -2,7 +2,7 @@
 # mkdir
 mkdir -p ~/.config/tmux
 mkdir -p ~/.config/fish
-mkdir -p ~/.config/nvim/py3nvim
+# mkdir -p ~/.config/nvim/py3nvim
 mkdir -p ~/.config/wezterm
 
 CURRENT=$(cd $(dirname $0);pwd)
@@ -15,9 +15,7 @@ ln -sf ~/.config/tmux/tmux.conf ~/.tmux.conf
 ln -sf $CURRENT/fish/config.fish ~/.config/fish/config.fish
 
 # set symbolic link nvim configuration
-ln -sf $CURRENT/nvim/init.lua ~/.config/nvim/init.lua
-ln -sf $CURRENT/nvim/lua ~/.config/nvim/
-ln -sf $CURRENT/nvim/py3nvim/pyproject.toml ~/.config/nvim/py3nvim/pyproject.toml
+ln -sf $CURRENT/nvim ~/.config/nvim
 
 # set symbolic link wezterm
 ln -sf $CURRENT/wez/wezterm.lua ~/.config/wezterm/.wezterm.lua

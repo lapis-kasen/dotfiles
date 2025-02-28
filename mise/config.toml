@@ -34,6 +34,7 @@ bun = "latest"
 usage = "latest"
 java = "21"
 "cargo:csview" = "latest"
+"cargo:viu" = "latest"
 
 [settings]
 experimental = true

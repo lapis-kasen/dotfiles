@@ -26,5 +26,17 @@ return {
         },
       })
     end,
+    keys = {
+      {
+        "<S-Right>",
+        "<cmd>bn<cr>",
+        desc = "buffer next"
+      },
+      {
+        "<S-Left>",
+        "<cmd>bp<cr>",
+        desc = "buffer prev"
+      }
+    }
   }
 }

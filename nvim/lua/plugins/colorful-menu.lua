@@ -54,7 +54,7 @@ return {
           extra_info_hl = "@comment",
         },
         -- The same applies to pyright/pylance
-        basedpyright = {
+        pyright = {
           -- It is usually import path such as "os"
           extra_info_hl = "@comment",
         },

@@ -1,4 +1,11 @@
 return {
+  -- blink compat
+  {
+    "saghen/blink.compat",
+    lazy = true,
+    opts = {},
+  },
+  -- blink
   {
     'saghen/blink.cmp',
 
@@ -6,7 +13,8 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
       "rafamadriz/friendly-snippets",
-      "xzbdmw/colorful-menu.nvim"
+      "xzbdmw/colorful-menu.nvim",
+      "tzachar/cmp-tabnine",
     },
     event = "BufEnter",
 
@@ -41,6 +49,9 @@ return {
       },
 
       completion = {
+        keyword = {
+          range = "prefix",
+        },
         ghost_text = {
           enabled = false
         },
@@ -53,7 +64,7 @@ return {
             align_to = "label",
             padding = 1,
             gap = 1,
-            columns = { { "kind_icon" }, { "label", gap = 1 } },
+            columns = { { "kind_icon" }, { "label", gap = 1 }, { "kind" }, { "source_name" } },
             components = {
               label = {
                 width = { fill = true, max = 60 },
@@ -80,15 +91,31 @@ return {
                 end,
               },
             },
-            -- treesitter = { 'lsp' },
+            treesitter = { 'lsp' },
           },
         },
       },
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', "tabnine", "lazydev" },
         cmdline = {},
+        providers = {
+          tabnine = {
+            name = "TabNine",
+            module = "blink.compat.source",
+            score_offset = 100,
+            async = true,
+            opts = {
+              cmp_name = "cmp_tabnine",  -- actual provider name
+            }
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
+          }
+        },
       },
     },
     opts_extend = { "sources.default" }

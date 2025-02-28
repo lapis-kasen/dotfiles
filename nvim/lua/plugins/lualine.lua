@@ -3,6 +3,7 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "AlexvZyl/nordic.nvim",
+      "arkav/lualine-lsp-progress",
     },
     event = "VeryLazy",
     config = function()
@@ -39,8 +40,8 @@ return {
         sections = {
           lualine_a = {'mode'},
           lualine_b = {'branch', 'diff', 'diagnostics'},
-          lualine_c = {'filename'},
-          lualine_x = {'encoding', 'fileformat', 'filetype'},
+          lualine_c = {'filename', 'lsp_progress'},
+          lualine_x = {'tabline', 'encoding', 'fileformat', 'filetype'},
           lualine_y = {'progress'},
           lualine_z = {'location'}
         },
