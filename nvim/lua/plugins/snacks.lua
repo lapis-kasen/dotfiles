@@ -13,8 +13,8 @@ return {
       sections = {
         {
           section = "terminal",
-          cmd = "viu -w 30 -h 30 ~/.config/nvim/nvim.png; sleep .1",
-          height = 30,
+          cmd = "art text N/VIM isometric | lolcrab -g cool; sleep 1",
+          height = 15,
           padding = 1,
         },
         { section = "keys" },

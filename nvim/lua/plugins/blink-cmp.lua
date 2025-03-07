@@ -26,7 +26,7 @@ return {
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
       -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = {
-        preset = 'default',
+        preset = 'enter',
         ['<Up>'] = { 'select_prev', 'fallback' },
         ['<S-TAB>'] = { 'select_prev', 'snippet_backward', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
@@ -104,7 +104,7 @@ return {
           tabnine = {
             name = "TabNine",
             module = "blink.compat.source",
-            score_offset = 100,
+            score_offset = 50,
             async = true,
             opts = {
               cmp_name = "cmp_tabnine",  -- actual provider name
