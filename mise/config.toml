@@ -38,6 +38,9 @@ java = "21"
 "go:github.com/gokcehan/lf" = "latest"
 "pipx:art" = "latest"
 "cargo:lolcrab" = "latest"
+"cargo:pay-respects" = "latest"
+"cargo:du-dust" = "latest"
+"cargo:cargo-clean-all" = "latest"
 
 [settings]
 experimental = true
