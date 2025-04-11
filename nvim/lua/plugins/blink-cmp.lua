@@ -9,12 +9,13 @@ return {
   {
     'saghen/blink.cmp',
 
-    version = "v0.11.0",
+    version = "1.*",
     -- optional: provides snippets for the snippet source
     dependencies = {
       "rafamadriz/friendly-snippets",
       "xzbdmw/colorful-menu.nvim",
       "tzachar/cmp-tabnine",
+      "ribru17/blink-cmp-spell",
     },
     event = "BufEnter",
 
@@ -35,17 +36,22 @@ return {
       },
 
       signature = {
-        enabled = true
+        enabled = true,
+        window = {
+          border = "solid",
+          show_documentation = false,
+        }
       },
 
       appearance = {
+        highlight_ns = vim.api.nvim_create_namespace("blink.cmp"),
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups
         -- Useful for when your theme doesn't support blink.cmp
         -- Will be removed in a future release
         use_nvim_cmp_as_default = true,
         -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'normal'
+        nerd_font_variant = 'normal',
       },
 
       completion = {
@@ -58,63 +64,115 @@ return {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
+          window = { border = "solid" }
         },
         menu = {
+          border = "solid",
           draw = {
             align_to = "label",
-            padding = 1,
+            padding = { 0, 1 },
             gap = 1,
-            columns = { { "kind_icon" }, { "label", gap = 1 }, { "kind" }, { "source_name" } },
+            columns = { { "kind_icon" }, { "label", gap = 1 }, { "kind" } },
             components = {
               label = {
-                width = { fill = true, max = 60 },
+                -- width = { fill = true, max = 60 },
                 text = function(ctx)
-                  local highlights_info = require("colorful-menu").blink_highlights(ctx)
-                  if highlights_info ~= nil then
-                    -- Or you want to add more item to label
-                    return highlights_info.label
-                  else
-                    return ctx.label
-                  end
+                  return require("colorful-menu").blink_components_text(ctx)
                 end,
                 highlight = function(ctx)
-                  local highlights = {}
-                  local highlights_info = require("colorful-menu").blink_highlights(ctx)
-                  if highlights_info ~= nil then
-                    highlights = highlights_info.highlights
-                  end
-                  for _, idx in ipairs(ctx.label_matched_indices) do
-                    table.insert(highlights, { idx, idx + 1, group = "BlinkCmpLabelMatch" })
-                  end
-                  -- Do something else
-                  return highlights
+                  return require("colorful-menu").blink_components_highlight(ctx)
                 end,
               },
             },
             treesitter = { 'lsp' },
           },
         },
+        accept = {
+          dot_repeat = true,
+          create_undo_point = true,
+          auto_brackets = {
+            enabled = true,
+            default_brackets = { "(", ")" },
+            kind_resolution = {
+              enabled = true,
+              blocked_filetypes = { "typescriptreact", "javascriptreact", "vue" },
+            },
+            semantic_token_resolution = {
+              enabled = true,
+              blocked_filetypes = { "java" },
+            }
+          },
+        }
       },
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', "tabnine", "lazydev" },
-        cmdline = {},
+        default = { 'lsp', 'path', 'snippets', 'buffer', "tabnine", "lazydev", "spell" },
         providers = {
           tabnine = {
             name = "TabNine",
             module = "blink.compat.source",
-            score_offset = 50,
+            score_offset = -6,
             async = true,
             opts = {
               cmp_name = "cmp_tabnine",  -- actual provider name
-            }
+            },
+            transform_items = function (_, items)
+              for _, item in ipairs(items) do
+                item.kind_name = "TabNine"
+                item.kind_icon = "󰁘"
+              end
+              return items
+            end
           },
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
             score_offset = 100,
-          }
+          },
+          spell = {
+            name = 'Spell',
+            module = 'blink-cmp-spell',
+            opts = {
+              -- EXAMPLE: Only enable source in `@spell` captures, and disable it
+              -- in `@nospell` captures.
+              enable_in_context = function()
+                local curpos = vim.api.nvim_win_get_cursor(0)
+                local captures = vim.treesitter.get_captures_at_pos(
+                  0,
+                  curpos[1] - 1,
+                  curpos[2] - 1
+                )
+                local in_spell_capture = false
+                for _, cap in ipairs(captures) do
+                  if cap.capture == 'spell' then
+                    in_spell_capture = true
+                  elseif cap.capture == 'nospell' then
+                    return false
+                  end
+                end
+                return in_spell_capture
+              end,
+            },
+          },
+        },
+      },
+      cmdline = {
+        completion = {
+          ghost_text = { enabled = true } },
+      },
+      fuzzy = {
+        sorts = {
+          function(a, b)
+            local sort = require('blink.cmp.fuzzy.sort')
+            if a.source_id == 'spell' and b.source_id == 'spell' then
+              return sort.label(a, b)
+            end
+          end,
+          -- This is the normal default order, which we fall back to
+          'score',
+          'kind',
+          'label',
         },
       },
     },

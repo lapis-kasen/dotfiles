@@ -1,7 +1,13 @@
 return {
   {
     "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
+    cmd = {
+      "ChatGPT",
+      "ChatGPTEditWithInstructions",
+      "ChatGPTActAs",
+      "ChatGPTRun",
+      "ChatGPTCompleteCode"
+    },
     update = false,  -- plugin's lua customed for work
     config = function()
       require("chatgpt").setup({
