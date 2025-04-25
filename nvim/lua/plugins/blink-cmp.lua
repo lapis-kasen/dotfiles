@@ -14,8 +14,8 @@ return {
     dependencies = {
       "rafamadriz/friendly-snippets",
       "xzbdmw/colorful-menu.nvim",
-      "tzachar/cmp-tabnine",
       "ribru17/blink-cmp-spell",
+      "Kaiser-Yang/blink-cmp-avante",
     },
     event = "BufEnter",
 
@@ -107,23 +107,12 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', "tabnine", "lazydev", "spell" },
+        default = { 'avante', 'lsp', 'path', 'snippets', 'buffer', "lazydev", "spell", "cmdline" },
         providers = {
-          tabnine = {
-            name = "TabNine",
-            module = "blink.compat.source",
-            score_offset = -6,
-            async = true,
-            opts = {
-              cmp_name = "cmp_tabnine",  -- actual provider name
-            },
-            transform_items = function (_, items)
-              for _, item in ipairs(items) do
-                item.kind_name = "TabNine"
-                item.kind_icon = "󰁘"
-              end
-              return items
-            end
+          avante = {
+            module = 'blink-cmp-avante',
+            name = 'Avante',
+            opts = {},
           },
           lazydev = {
             name = "LazyDev",
@@ -155,11 +144,21 @@ return {
               end,
             },
           },
+          cmdline = {
+            min_keyword_length = function (ctx)
+              if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+                return 3
+              end
+              return 0
+            end
+          },
         },
       },
       cmdline = {
         completion = {
-          ghost_text = { enabled = true } },
+          ghost_text = { enabled = true },
+          menu = { auto_show = true },
+        },
       },
       fuzzy = {
         sorts = {

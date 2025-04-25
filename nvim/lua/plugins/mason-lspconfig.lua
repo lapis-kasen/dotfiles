@@ -5,15 +5,14 @@ return
     dependencies = {
       "neovim/nvim-lspconfig",
       "williamboman/mason.nvim",
+      "saghen/blink.cmp",
     },
-    event = "BufEnter",
-    config = function ()
-      require('mason').setup()
-      require('mason-lspconfig').setup({
-        ensure_installed = {
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      ensure_installed = {
           "ansiblels",
           "bashls",
-          "bufls",
+          "buf_ls",
           "docker_compose_language_service",
           "dockerls",
           "gopls",
@@ -23,38 +22,25 @@ return
           "svelte",
           "vimls",
           "yamlls",
-        },
-        automatic_installation = true,
-      })
-
-      local on_attach = function(_, _)  -- client, bufnr
-        vim.lsp.codelens.refresh()
-      end
-
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-        callback = function(ev)
-          local opts = { buffer = ev.buf , noremap = true, silent = true }
-          vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        end,
-      })
+      },
+      automatic_installation = true,
+    },
+    config = function (_, opts)
+      require('mason').setup()
+      require('mason-lspconfig').setup(opts)
 
       require('mason-lspconfig').setup_handlers ({
         function(server_name)
-          require('lspconfig')[server_name].setup ({
-            capabilities = capabilities,
-            on_attach = on_attach,
-          })
-        end,
-        -- for python poetry env
-        ["pyright"] = function ()
-          require('lspconfig').pyright.setup {
-            settings = {
+          local lspconfig = require("lspconfig")
+          ---@type lspconfig.Config
+          local server_opts = {}
+          local ok, cmp = pcall(require, "blink-cmp")
+          if ok then
+            server_opts.capabilities = cmp.get_lsp_capabilities()
+          end
+          --- venv support for python project
+          if server_name == "pyright" then
+            server_opts.settings = {
               python = {
                 venvPath = '.',
                 pythonPath = './.venv/bin/python',
@@ -63,7 +49,10 @@ return
                 }
               }
             }
-          }
+          end
+
+          --- buttom of setup_handlers
+          lspconfig[server_name].setup(server_opts)
         end,
       })
       vim.cmd("LspStart")

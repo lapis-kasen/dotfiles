@@ -55,6 +55,8 @@ if [ ! -e ~/.local/bin/mise ]; then
 fi
 
 # mise install
+~/.local/bin/mise use -g python
+pip install --user pipx
 ~/.local/bin/mise install
 # mise upgrade
 ~/.local/bin/mise upgrade
