@@ -61,6 +61,8 @@ return {
       local color = require("nordic.colors")
       -- sidebar line num
       vim.api.nvim_set_hl(0, "LineNr", { fg = color.fg_dark })
+      -- comment
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#8892a0", italic = true })
     end,
   }
 }

@@ -16,6 +16,7 @@ return {
       "xzbdmw/colorful-menu.nvim",
       "ribru17/blink-cmp-spell",
       "Kaiser-Yang/blink-cmp-avante",
+      "obsidian-nvim/obsidian.nvim"
     },
     event = "BufEnter",
 
@@ -57,6 +58,11 @@ return {
       completion = {
         keyword = {
           range = "prefix",
+        },
+        list = {
+          selection = {
+            auto_insert = true
+          }
         },
         ghost_text = {
           enabled = false
@@ -107,7 +113,7 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'avante', 'lsp', 'path', 'snippets', 'buffer', "lazydev", "spell", "cmdline" },
+        default = { 'avante', 'obsidian', 'lsp', 'path', 'snippets', 'buffer', "lazydev", "spell", "cmdline" },
         providers = {
           avante = {
             module = 'blink-cmp-avante',
@@ -158,7 +164,20 @@ return {
         completion = {
           ghost_text = { enabled = true },
           menu = { auto_show = true },
+          list = {
+            selection = {
+              auto_insert = true
+            }
+          }
         },
+        keymap = {
+          preset = "enter",
+          ['<Up>'] = { 'select_prev', 'fallback' },
+          ['<S-TAB>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+          ['<Down>'] = { 'select_next', 'fallback' },
+          ['<TAB>'] = { 'select_next', 'snippet_forward', 'fallback' },
+          ['<ENTER>'] = { 'accept', 'fallback' }
+        }
       },
       fuzzy = {
         sorts = {

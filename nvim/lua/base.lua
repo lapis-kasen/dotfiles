@@ -81,3 +81,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = true
 vim.opt.inccommand = "split"
+
+-- disable commandline window
+vim.api.nvim_set_keymap("n", "q:", "<Nop>", { noremap = true, silent = true })

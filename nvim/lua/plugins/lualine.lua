@@ -4,6 +4,7 @@ return {
     dependencies = {
       "AlexvZyl/nordic.nvim",
       "arkav/lualine-lsp-progress",
+      "ravitemer/mcphub.nvim"
     },
     event = "VeryLazy",
     config = function()
@@ -41,7 +42,7 @@ return {
           lualine_a = {'mode'},
           lualine_b = {'branch', 'diff', 'diagnostics'},
           lualine_c = {'filename', 'lsp_progress'},
-          lualine_x = {'tabline', 'encoding', 'fileformat', 'filetype'},
+          lualine_x = {'tabline', 'encoding', 'fileformat', 'filetype', {require('mcphub.extensions.lualine')}},
           lualine_y = {'progress'},
           lualine_z = {'location'}
         },

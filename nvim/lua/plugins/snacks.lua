@@ -13,9 +13,10 @@ return {
       sections = {
         {
           section = "terminal",
-          cmd = "art text N/VIM isometric | lolcrab -g cool; sleep 1",
+          cmd = "art text NVIM isometric | tte --anchor-canvas s beams --beam-delay 5 --beam-row-speed-range 20-60 --beam-column-speed-range 8-12 --final-gradient-direction diagonal",
           height = 15,
           padding = 1,
+          ttl = 0,
         },
         { section = "keys" },
         { section = "startup" },

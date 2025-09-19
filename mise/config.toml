@@ -44,6 +44,11 @@ sqlite = "latest"
 "cargo:create-tauri-app" = "latest"
 "cargo:tauri-cli" = "latest"
 "npm:azure-pipelines-language-server" = "latest"
+"pipx:terminaltexteffects" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:@modelcontextprotocol/inspector" = "latest"
+"pipx:lizard" = "latest"
+"npm:mcp-hub" = "4.2.1"
 
 [settings]
 experimental = true

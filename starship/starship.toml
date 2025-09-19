@@ -19,8 +19,9 @@
 # #A3BE8C
 # #B48EAD
 
+# $username\
 format = """
-$username\
+[ Lapico ](bg:#4C566A)[\uE0BC](bg:#BF616A fg:#4C566A)\
 $directory\
 $git_branch\
 $git_status\
@@ -42,8 +43,11 @@ $character
 # [\uE0B0 ](fg:#81A1C1 bg:#2E3440)\
 
 [character]
-success_symbol = "[   \uE007  ](bg:#4C566A)[\uE0BC](fg:#4C566A)"
-error_symbol = "[   \uE007  ](bg:#4C566A fg:#BF616A)[\uE0BC](fg:#4C566A)"
+
+# success_symbol = "[   \uE007  ](bg:#4C566A)[\uE0BC](fg:#4C566A)"
+# error_symbol = "[   \uE007  ](bg:#4C566A fg:#BF616A)[\uE0BC](fg:#4C566A)"
+success_symbol = "[  ](bg:#4C566A)[\uE0BC](fg:#4C566A)"
+error_symbol = "[  ](bg:#4C566A fg:#BF616A)[\uE0BC](fg:#4C566A)"
 
 # system
 

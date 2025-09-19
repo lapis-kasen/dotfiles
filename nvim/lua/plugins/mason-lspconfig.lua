@@ -2,6 +2,7 @@ return
 {
   {
     "williamboman/mason-lspconfig.nvim",
+    version = "^1.0.0",
     dependencies = {
       "neovim/nvim-lspconfig",
       "williamboman/mason.nvim",
@@ -13,7 +14,7 @@ return
           "ansiblels",
           "bashls",
           "buf_ls",
-          "docker_compose_language_service",
+          "DOCker_compose_language_service",
           "dockerls",
           "gopls",
           "jsonls",

@@ -28,6 +28,9 @@ alias bat="bat --theme Nord"
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 git config --global is-interactive.diffFilter "diff-so-fancy --patch"
 
+# color
+set fish_color_autosuggestion 8892a0
+
 # EDITOR
 set -x EDITOR "nvim"
 

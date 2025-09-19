@@ -1,13 +1,25 @@
 return {
-  {
   "yetone/avante.nvim",
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   ---@module "avante"
   opts = {
-    -- add any opts here
-    -- for example
+    hints = {
+      enabled = false
+    },
     provider = "proxy_openai",
+    behaviour = {
+      enable_cursor_planning_mode = true,
+    },
+    system_prompt = function ()
+      local hub = require("mcphub").get_hub_instance()
+      return hub and hub:get_active_servers_prompt() or ""
+    end,
+    custom_tools = function()
+      return {
+        require("mcphub.extensions.avante").mcp_tool(),
+      }
+    end,
     ---@type AvanteProvider
     vendors = {
       ["proxy_openai"] = {
@@ -16,8 +28,6 @@ return {
         api_key_name = "OPENAI_API_KEY",
         model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
         timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-        temperature = 0,
-        max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
         ---@type fun(opts: AvanteProvider, code_opts: AvantePromptOptions): AvanteCurlOutput
         parse_curl_args = function (opts, code_opts)
           return {
@@ -62,6 +72,7 @@ return {
     -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     -- "zbirenbaum/copilot.lua", -- for providers='copilot'
+    "ravitemer/mcphub.nvim",  -- for mcp support
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
@@ -88,5 +99,4 @@ return {
       ft = { "markdown", "Avante" },
     },
   },
-}
 }
